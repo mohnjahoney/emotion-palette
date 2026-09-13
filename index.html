@@ -1,57 +1,15 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Palette — find the words for how you feel</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="styles-svg.css" />
-  </head>
-  <body>
-    <main class="app-shell">
-      <header class="topbar">
-        <button class="brand" data-action="home" aria-label="Go to home"><span class="brand-mark">◒</span><span>palette</span></button>
-        <div class="top-actions"><button class="text-button" data-action="home">Start over</button><button class="icon-button" aria-label="Help">?</button></div>
-      </header>
-
-      <section class="hero" id="home-view">
-        <div class="eyebrow">A gentler way to name what’s happening</div>
-        <h1>What’s in your<br><em>emotional palette?</em></h1>
-        <p class="hero-copy">You don’t need the perfect word right away. Pick what feels nearby, collect a few possibilities, and let the picture come into focus.</p>
-        <button class="primary-button" data-action="begin">Begin exploring <span>→</span></button>
-        <div class="color-ribbon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      </section>
-
-      <section class="explore hidden" id="explore-view">
-        <div class="progress-row"><span id="step-label">01 / 03</span><span class="progress-track"><span id="progress-fill"></span></span><span id="step-name">First impression</span></div>
-        <div class="explore-grid">
-          <div class="question-panel">
-            <div class="eyebrow">No wrong answers here</div>
-            <h2 id="question-title">What’s the overall energy of it?</h2>
-            <p id="question-copy">Choose anything that feels close. You can keep more than one.</p>
-            <div class="option-grid" id="option-grid"></div>
-            <button class="primary-button continue-button" data-action="continue">Continue <span>→</span></button>
-          </div>
-          <aside class="palette-panel">
-            <div class="panel-heading"><div><span class="eyebrow">Your working set</span><h3>Emotional palette</h3></div><span class="count" id="palette-count">0</span></div>
-            <p class="panel-note">These words are nearby, but not decided yet.</p>
-            <div class="tag-list" id="palette-list"><div class="empty-state">Your palette will appear here.<br><span>Follow what feels even a little true.</span></div></div>
-            <button class="picture-link" data-action="picture">See my picture <span>→</span></button>
-          </aside>
-        </div>
-      </section>
-
-      <section class="picture-view hidden" id="picture-view">
-        <div class="picture-header"><div><div class="eyebrow">The words you chose to keep</div><h2>Your emotional <em>picture</em></h2></div><button class="back-link" data-action="explore">← Back to palette</button></div>
-        <p class="picture-copy">There’s no need for this to be complete. It’s simply a picture of how things feel right now.</p>
-        <div class="picture-card"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="picture-words" id="picture-list"></div><div class="picture-footer"><span>right now</span><button class="primary-button small" data-action="home">Save and start fresh <span>↗</span></button></div></div>
-      </section>
-
-      <footer><span>Made for moments when “fine” doesn’t quite cover it.</span><span>Take your time · Nothing is permanent</span></footer>
-    </main>
-    <script src="app.js?v=2"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#f7f3ed" />
+  <title>Palette — find the words for how you feel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="styles-svg.css" /><link rel="stylesheet" href="stream.css" />
+</head>
+<body><main class="app-shell">
+  <header class="topbar"><button class="brand" data-action="home" aria-label="Go to home"><span class="brand-mark">◒</span><span>palette</span></button><div class="top-actions"><button class="text-button" data-action="home">Start over</button><button class="icon-button" aria-label="Help">?</button></div></header>
+  <section class="hero" id="home-view"><div class="eyebrow">A gentler way to name what’s happening</div><h1>What’s in your<br><em>emotional palette?</em></h1><p class="hero-copy">Words will pass by. Notice what lands, what doesn’t, and what you want to keep nearby.</p><button class="primary-button" data-action="begin">Begin exploring <span>→</span></button><div class="color-ribbon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
+  <section class="stream-view hidden" id="stream-view"><div class="stream-toolbar"><div><div class="eyebrow">Follow what catches</div><h2>Let the words drift by.</h2></div><button class="palette-button" data-action="palette"><span class="palette-dot"></span> My palette <b id="palette-count">0</b> <span>↗</span></button></div><div class="stream-stage" id="stream-stage"><div class="stream-hint"><span>← not this</span><span class="hint-center">↑ definitely</span><span>maybe this →</span><small>Use the arrow keys · or swipe the word</small></div><div class="stream-line"></div><div id="cloud-layer"></div></div><div class="stream-footer"><span id="stream-status">A word is coming into focus</span><button class="keyboard-help" data-action="palette">Open my palette <span>→</span></button></div></section>
+  <section class="palette-view hidden" id="palette-view"><div class="palette-header"><div><div class="eyebrow">Your working picture</div><h2>Emotional <em>palette</em></h2><p>Words you’ve met, arranged by how they felt.</p></div><div class="palette-actions"><button class="subtle-button" data-action="stream">← Back to stream</button><button class="primary-button small" data-action="minimize">Minimize cluster <span>✦</span></button></div></div><div class="palette-canvas" id="palette-canvas"><div class="spectrum-labels"><span>definitely this</span><span>maybe this</span><span>not this</span><span>definitely not</span></div><div id="cluster-layer"></div><div class="canvas-empty" id="canvas-empty">Your palette will gather here.<br><span>Try a few words, then come back.</span></div></div></section>
+  <footer><span>Made for moments when “fine” doesn’t quite cover it.</span><span>Take your time · Nothing is permanent</span></footer>
+</main><script src="app.js?v=3"></script></body></html>
